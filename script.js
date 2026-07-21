@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 user: { id: crypto.getRandomValues(new Uint8Array(16)), name: username, displayName: username },
                 pubKeyCredParams: [ { type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 } ],
                 authenticatorSelection: {
-                    userVerification: 'preferred',
+                    userVerification: 'required',
                     // residentKey: 'required' // 'residentKey' is now an alias for 'discoverableCredential'
                 },
                 timeout: 60000,
