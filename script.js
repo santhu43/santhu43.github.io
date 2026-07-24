@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 pubKeyCredParams: [ { type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 } ],
                 authenticatorSelection: {
                     userVerification: 'preferred',
-                    residentKey: 'preferred' // 'residentKey' is now an alias for 'discoverableCredential'
+                    residentKey: 'required' // 'residentKey' is now an alias for 'discoverableCredential'
                 },
                 timeout: 60000,
                 attestation: 'none'
