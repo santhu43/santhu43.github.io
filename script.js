@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 pubKeyCredParams: [ { type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 } ],
                 authenticatorSelection: {
                     userVerification: 'preferred',
-                    residentKey: 'required' // 'residentKey' is now an alias for 'discoverableCredential'
+                    residentKey: 'preferred' // 'residentKey' is now an alias for 'discoverableCredential'
                 },
                 timeout: 60000,
                 attestation: 'none'
@@ -386,10 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const allCreds = JSON.parse(localStorage.getItem('webauthn-credentials') || '[]');
             const credToVerify = allCreds.find(c => c.id === bufferToBase64url(assertion.rawId));
 
-            // if (!credToVerify) {
-            //     throw new Error(`Could not find credential with ID ${bufferToBase64url(assertion.rawId)} in storage.`);
-            // }
-            // log('Found matching credential in storage for verification.', credToVerify);
+            if (!credToVerify) {
+                throw new Error(`Could not find credential with ID ${bufferToBase64url(assertion.rawId)} in storage.`);
+            }
+            log('Found matching credential in storage for verification.', credToVerify);
 
             const clientDataJSON = JSON.parse(new TextDecoder().decode(assertion.response.clientDataJSON));
             
